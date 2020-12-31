@@ -1,6 +1,11 @@
 import * as React from 'react';
 import './Accordion.sass';
+import { Item } from '../../helpers';
 
-export const Accordion: React.FC = () => {
-  return <div className="accordion">Accordion</div>;
+type Props = {
+  items: Item[];
+};
+
+export const Accordion: React.FC<Props> = ({ items }: Props) => {
+  return <div className="accordion"> {items.length} </div>;
 };
