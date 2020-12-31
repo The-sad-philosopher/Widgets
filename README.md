@@ -1,3 +1,3 @@
-# Widegets
+# Widgets
 
 **Note**: In development
