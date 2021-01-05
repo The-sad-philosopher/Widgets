@@ -1,16 +1,16 @@
 import * as React from 'react';
 import axios from 'axios';
 
-const baseUrl = 'https://en.wikipedia.org/w/api.php';
+const baseUrl = 'https://en.wikipedia.org';
 
 export const WikiSearch: React.FC = () => {
-  const [searchTerm, setSearchTerm] = React.useState('programming');
+  const [searchTerm, setSearchTerm] = React.useState('');
   const [results, setResults] = React.useState<Array<any>>([]);
 
   React.useEffect(() => {
     searchTerm &&
       (async () => {
-        const { data } = await axios.get(baseUrl, {
+        const { data } = await axios.get(`${baseUrl}/w/api.php`, {
           params: {
             action: 'query',
             list: 'search',
@@ -32,6 +32,15 @@ export const WikiSearch: React.FC = () => {
 
     return (
       <div className="item" key={result.timestamp}>
+        <div className="right floated content">
+          <a
+            href={`${baseUrl}?curid=${result.pageid}`}
+            className="ui button"
+            target="blank"
+          >
+            Go
+          </a>
+        </div>
         <div className="content">
           <div className="header">{result.title}</div>
           {cleanSnippet}
