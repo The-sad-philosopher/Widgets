@@ -1,10 +1,17 @@
 import * as React from 'react';
 import { baseUrl, search } from './api';
+import { removeHTMLTags } from './lib';
 
 export const WikiSearch: React.FC = () => {
+  // * state
   const [searchTerm, setSearchTerm] = React.useState('');
   const [results, setResults] = React.useState<Array<any>>([]);
 
+  // * inputHandler
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setSearchTerm(e.target.value);
+
+  // * lifecycle hook -> searchTerm
   React.useEffect(() => {
     if (searchTerm) {
       (async () => {
@@ -14,13 +21,9 @@ export const WikiSearch: React.FC = () => {
     }
   }, [searchTerm]);
 
-  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setSearchTerm(e.target.value);
-
+  // * rendered list
   const renderedList = results.map((result) => {
-    const regex = /(<([^>]+)>)/gi;
-    const cleanSnippet = result.snippet.replace(regex, '');
-
+    const cleanSnippet = removeHTMLTags(result.snippet);
     return (
       <div className="item" key={result.timestamp}>
         <div className="right floated content">
