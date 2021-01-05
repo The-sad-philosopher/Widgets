@@ -11,12 +11,17 @@ export const WikiSearch: React.FC = () => {
     setSearchTerm(e.target.value);
 
   React.useEffect(() => {
-    if (searchTerm) {
-      (async () => {
-        const data = await search(searchTerm);
-        setResults(data);
-      })();
-    }
+    /* setting a delay in search */
+    const timeoutId = setTimeout(() => {
+      searchTerm &&
+        (async () => {
+          const data = await search(searchTerm);
+          setResults(data);
+        })();
+    }, 700);
+
+    /* component rerender resets the delay */
+    return () => clearTimeout(timeoutId);
   }, [searchTerm]);
 
   return (
