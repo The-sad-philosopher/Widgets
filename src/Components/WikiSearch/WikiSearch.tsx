@@ -1,26 +1,17 @@
 import * as React from 'react';
-import axios from 'axios';
-
-const baseUrl = 'https://en.wikipedia.org';
+import { baseUrl, search } from './api';
 
 export const WikiSearch: React.FC = () => {
   const [searchTerm, setSearchTerm] = React.useState('');
   const [results, setResults] = React.useState<Array<any>>([]);
 
   React.useEffect(() => {
-    searchTerm &&
+    if (searchTerm) {
       (async () => {
-        const { data } = await axios.get(`${baseUrl}/w/api.php`, {
-          params: {
-            action: 'query',
-            list: 'search',
-            origin: '*',
-            format: 'json',
-            srsearch: searchTerm,
-          },
-        });
-        setResults(data.query.search);
+        const data = await search(searchTerm);
+        setResults(data);
       })();
+    }
   }, [searchTerm]);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
