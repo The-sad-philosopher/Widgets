@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { baseUrl, search } from './api';
 import { removeHTMLTags } from './lib';
+import { Form } from './Form';
 
 export const WikiSearch: React.FC = () => {
   // * state
@@ -21,7 +22,7 @@ export const WikiSearch: React.FC = () => {
     }
   }, [searchTerm]);
 
-  // * rendered list
+  // * rendered list -> component
   const renderedList = results.map((result) => {
     const cleanSnippet = removeHTMLTags(result.snippet);
     return (
@@ -44,20 +45,9 @@ export const WikiSearch: React.FC = () => {
   });
 
   return (
-    <>
-      <div className="wiki-search ui form">
-        <div className="field">
-          <label htmlFor="search">Enter search term</label>
-          <input
-            type="text"
-            placeholder="Search"
-            className="input"
-            onChange={onInputChange}
-            value={searchTerm}
-          />
-        </div>
-      </div>
+    <div className="wiki-search">
+      <Form onInputChange={onInputChange} searchTerm={searchTerm} />
       <div className="ui celled list">{renderedList}</div>
-    </>
+    </div>
   );
 };
