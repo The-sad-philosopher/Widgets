@@ -15,6 +15,11 @@ export const Dropdown: React.FC<Props> = (props) => {
 
   const onInputClick = (selection: Option) => onSelectionChange(selection);
   const onDropdownClick = () => setIsOpen(!isOpen);
+  const onBodyClick = () => setIsOpen(false);
+
+  React.useEffect(() => {
+    document.body.addEventListener('click', onBodyClick, { capture: true });
+  }, []);
 
   const dropdownList = options.map((option) => (
     <div
