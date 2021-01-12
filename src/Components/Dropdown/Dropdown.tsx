@@ -11,7 +11,11 @@ type Props = {
 export const Dropdown: React.FC<Props> = (props) => {
   const { options, selection, onSelectionChange } = props;
 
+  const [isOpen, setIsOpen] = React.useState(false);
+
   const onInputClick = (selection: Option) => onSelectionChange(selection);
+
+  const onDropdownClick = () => setIsOpen(!isOpen);
 
   const dropdownList = options.map((option) => (
     <div
@@ -29,10 +33,17 @@ export const Dropdown: React.FC<Props> = (props) => {
       <div className="ui form">
         <div className="field">
           <label htmlFor="dropdown label">Label</label>
-          <div className="ui selection dropdown visible active">
+          <div
+            onClick={onDropdownClick}
+            className={`ui selection dropdown ${
+              isOpen ? 'visible active' : ''
+            }`}
+          >
             <i className="dropdown icon"></i>
             <span className="text">{selection.label}</span>
-            <div className="menu visible transition">{dropdownList}</div>
+            <div className={`menu ${isOpen ? 'visible transition' : ''}`}>
+              {dropdownList}
+            </div>
           </div>
         </div>
       </div>
