@@ -43,7 +43,9 @@ export const Dropdown: React.FC<Props> = (props) => {
     <>
       <div ref={dropdownElement} className="ui form">
         <div className="field">
-          <label htmlFor="dropdown label">Label</label>
+          <label htmlFor="dropdown label" style={{ color: selection.value }}>
+            Label
+          </label>
           <DropdownList
             onDropdownClick={onDropdownClick}
             isOpen={isOpen}
