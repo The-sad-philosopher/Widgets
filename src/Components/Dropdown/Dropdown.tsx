@@ -13,12 +13,19 @@ export const Dropdown: React.FC<Props> = (props) => {
   const { options, selection, onSelectionChange } = props;
   const [isOpen, setIsOpen] = React.useState(false);
 
+  const dropdownElement = React.useRef<HTMLDivElement>(null);
+
   const onInputClick = (selection: Option) => onSelectionChange(selection);
   const onDropdownClick = () => setIsOpen(!isOpen);
-  const onBodyClick = () => setIsOpen(false);
+  const onBodyClick = (event: MouseEvent) => {
+    if (dropdownElement?.current?.contains(event.target as Node)) return;
+    setIsOpen(false);
+  };
 
   React.useEffect(() => {
     document.body.addEventListener('click', onBodyClick, { capture: true });
+
+    return () => document.body.removeEventListener('click', onBodyClick);
   }, []);
 
   const dropdownList = options.map((option) => (
@@ -34,7 +41,7 @@ export const Dropdown: React.FC<Props> = (props) => {
 
   return (
     <>
-      <div className="ui form">
+      <div ref={dropdownElement} className="ui form">
         <div className="field">
           <label htmlFor="dropdown label">Label</label>
           <DropdownList
