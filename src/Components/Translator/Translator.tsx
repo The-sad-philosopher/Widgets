@@ -2,21 +2,24 @@ import * as React from 'react';
 import './Translator.sass';
 import { Dropdown } from '../Dropdown';
 
-console.log(Dropdown);
-export const Translator: React.FC = () => {
-  const options = [
-    { label: 'Hindi', value: 'hi' },
-    { label: 'French', value: 'fr' },
-  ];
+const options = [
+  { label: 'Afrikaans', value: 'af' },
+  { label: 'French', value: 'fr' },
+  { label: 'Hindi', value: 'hi' },
+];
 
+export const Translator: React.FC = () => {
   const [selectedLanguage, setSelectedLanguage] = React.useState(options[0]);
 
+  console.log(selectedLanguage);
+
   return (
-    <div>
+    <div className="translator">
       <Dropdown
         options={options}
         selection={selectedLanguage}
         onSelectionChange={setSelectedLanguage}
+        label="Select Language"
       />
     </div>
   );
