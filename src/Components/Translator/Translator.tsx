@@ -1,11 +1,13 @@
 import * as React from 'react';
 import './Translator.sass';
 import { Dropdown } from '../Dropdown';
+import { Translate } from './Translate';
 
 const options = [
-  { label: 'Afrikaans', value: 'af' },
+  { label: 'German', value: 'de' },
   { label: 'French', value: 'fr' },
   { label: 'Hindi', value: 'hi' },
+  { label: 'Malayalam', value: 'ml' },
 ];
 
 export const Translator: React.FC = () => {
@@ -34,6 +36,7 @@ export const Translator: React.FC = () => {
         onSelectionChange={setSelectedLanguage}
         label="Select Language"
       />
+      <Translate text={text} language={selectedLanguage} />
     </div>
   );
 };
