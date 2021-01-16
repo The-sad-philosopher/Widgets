@@ -10,7 +10,7 @@ type Props = {
 };
 
 export const Translate: React.FC<Props> = ({ text, language }) => {
-  const [debouncedText, setDebouncedText] = React.useState('');
+  const [debouncedText, setDebouncedText] = React.useState(text);
   const [result, setResult] = React.useState('');
 
   React.useEffect(() => {
@@ -26,8 +26,12 @@ export const Translate: React.FC<Props> = ({ text, language }) => {
 
   return (
     <div className="translate">
-      Output:
-      <h1 className="ui header">{result}</h1>
+      <div className="ui fluid card">
+        <div className="content">
+          <div className="meta">Translated Text</div>
+          <div className="description">{result}</div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -12,7 +12,7 @@ const options = [
 
 export const Translator: React.FC = () => {
   const [selectedLanguage, setSelectedLanguage] = React.useState(options[0]);
-  const [text, setText] = React.useState('');
+  const [text, setText] = React.useState('Hello, World!');
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setText(e.target.value);
