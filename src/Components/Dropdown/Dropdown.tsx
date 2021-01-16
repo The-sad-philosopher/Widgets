@@ -7,10 +7,11 @@ type Props = {
   options: Option[];
   selection: Option;
   onSelectionChange: React.Dispatch<React.SetStateAction<Option>>;
+  label: string;
 };
 
 export const Dropdown: React.FC<Props> = (props) => {
-  const { options, selection, onSelectionChange } = props;
+  const { options, selection, onSelectionChange, label } = props;
   const [isOpen, setIsOpen] = React.useState(false);
 
   const dropdownElement = React.useRef<HTMLDivElement>(null);
@@ -34,7 +35,6 @@ export const Dropdown: React.FC<Props> = (props) => {
       className="item"
       onClick={() => onInputClick(option)}
     >
-      <div className={`ui ${option.value} empty circular label`}></div>
       {option.label}
     </div>
   ));
@@ -43,9 +43,7 @@ export const Dropdown: React.FC<Props> = (props) => {
     <>
       <div ref={dropdownElement} className="ui form">
         <div className="field">
-          <label htmlFor="dropdown label" style={{ color: selection.value }}>
-            Label
-          </label>
+          <label htmlFor="dropdown label">{label}</label>
           <DropdownList
             onDropdownClick={onDropdownClick}
             isOpen={isOpen}
