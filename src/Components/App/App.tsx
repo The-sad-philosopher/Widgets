@@ -4,17 +4,20 @@ import { items } from '../../helpers';
 import { Accordion } from '../Accordion';
 import { WikiSearch } from '../WikiSearch';
 import { Translator } from '../Translator';
-
-const route = (path: string, component: JSX.Element) => {
-  return window.location.pathname === path ? component : null;
-};
+import { Router } from '../Router';
 
 export const App: React.FC = () => {
   return (
     <div className="app">
-      {route('/', <Accordion items={items} />)}
-      {route('/search', <WikiSearch />)}
-      {route('/translate', <Translator />)}
+      <Router path="/">
+        <Accordion items={items} />
+      </Router>
+      <Router path="/search">
+        <WikiSearch />
+      </Router>
+      <Router path="/translate">
+        <Translator />
+      </Router>
     </div>
   );
 };
