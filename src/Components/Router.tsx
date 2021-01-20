@@ -6,5 +6,16 @@ type Props = {
 };
 
 export const Router: React.FC<Props> = ({ path, children }) => {
-  return window.location.pathname === path ? children : null;
+  const [currentPath, setCurrentPath] = React.useState(
+    window.location.pathname
+  );
+
+  React.useEffect(() => {
+    const onURLChange = () => setCurrentPath(window.location.pathname);
+
+    window.addEventListener('popstate', onURLChange);
+    return () => window.removeEventListener('popstate', onURLChange);
+  }, []);
+
+  return currentPath === path ? children : null;
 };
