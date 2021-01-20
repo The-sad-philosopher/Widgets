@@ -22,7 +22,7 @@ export const Header: React.FC = () => {
     <div className="header ui secondary pointing menu">
       <div className="ui container">
         <Link href="/" className={getClassName('/')}>
-          Accordion
+          About
         </Link>
         <Link href="/search" className={getClassName('/search')}>
           WikiSearch

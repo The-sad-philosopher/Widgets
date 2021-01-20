@@ -35,5 +35,9 @@ export const Accordion: React.FC<Props> = ({ items }: Props) => {
     );
   });
 
-  return <div className="ui styled accordion">{accordionList}</div>;
+  return (
+    <div className="accordion container">
+      <div className="ui styled accordion">{accordionList}</div>
+    </div>
+  );
 };

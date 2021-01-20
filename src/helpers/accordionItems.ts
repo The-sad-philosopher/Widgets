@@ -5,15 +5,17 @@ export interface Item {
 
 export const items: Item[] = [
   {
-    title: 'What is React?',
-    content: 'React is a front end Javascript library.',
+    title: 'What exactly is this?',
+    content: 'This is a simple project that I did to study React Hooks.',
   },
   {
-    title: 'Why use React?',
-    content: 'React is a favorite library among engineers.',
+    title: 'What am I supposed to do?',
+    content:
+      'You have a few options in the header as you can see. Try exploring them.',
   },
   {
-    title: 'How do one use React?',
-    content: 'You use React by creating components.',
+    title: 'What is WikiSearch and Translate?',
+    content:
+      "They are some simple components I made using Wikipedia's api and Google Translate's api respectfully. Give them a try.",
   },
 ];
