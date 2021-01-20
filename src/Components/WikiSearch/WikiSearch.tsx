@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './WikiSearch.sass';
 import { search } from './api';
 import { Form } from './Form';
 import { Results } from './Results';
@@ -25,7 +26,7 @@ export const WikiSearch: React.FC = () => {
   }, [searchTerm]);
 
   return (
-    <div className="wiki-search">
+    <div className="wiki-search ui container">
       <Form onInputChange={onInputChange} searchTerm={searchTerm} />
       <Results results={results} />
     </div>
