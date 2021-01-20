@@ -29,7 +29,7 @@ export const Results: React.FC<Props> = ({ results }) => {
         </div>
         <div className="content">
           <div className="header">{result.title}</div>
-          {cleanSnippet}
+          <p>{cleanSnippet}</p>
         </div>
       </div>
     );
