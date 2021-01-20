@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './Header.sass';
 import { Link } from './Link';
 
 export const Header: React.FC = () => {
@@ -18,10 +19,10 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <div className="ui secondary pointing menu">
+    <div className="header ui secondary pointing menu">
       <div className="ui container">
         <Link href="/" className={getClassName('/')}>
-          Accordion
+          About
         </Link>
         <Link href="/search" className={getClassName('/search')}>
           WikiSearch
