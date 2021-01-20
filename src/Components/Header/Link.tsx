@@ -10,6 +10,8 @@ export const Link: React.FC<Props> = (props) => {
   const { href, className, children } = props;
 
   const onClick = (event: React.MouseEvent) => {
+    if (event.metaKey || event.ctrlKey) return;
+
     event.preventDefault();
     window.history.pushState({}, '', href);
     const navEvent = new PopStateEvent('popstate');
